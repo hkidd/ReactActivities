@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-const ListGroup = () => {
-    return null;
-}
- 
+const ListGroup = (props) => {
+  const { items, textProperty, valueProperty } = props;
+
+  return (
+    <ul className="list-group">
+      {items.map((item) => (
+        <li key={item[valueProperty]} className="list-group-item">
+          {item[textProperty]}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 export default ListGroup;
-
-{/* <ul class="list-group">
-            <li class="list-group-item active" aria-current="true">An active item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
-        </ul> */}
