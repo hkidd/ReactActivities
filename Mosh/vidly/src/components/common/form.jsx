@@ -31,7 +31,6 @@ class Form extends Component {
     e.preventDefault();
 
     const errors = this.validate();
-    console.log(errors);
     // errors always needs to be set to an object, cannot be null
     this.setState({ errors: errors || {} });
     if (errors) return;
