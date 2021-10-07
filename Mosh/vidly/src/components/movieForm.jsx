@@ -6,21 +6,34 @@ import { getGenres } from "../services/genreService";
 
 class MovieForm extends Form {
   state = {
-    data: { title: "", genreId: "", numberInStock: "", dailyRentalRate: "" },
+    data: {
+      title: "",
+      genreId: "",
+      numberInStock: "",
+      dailyRentalRate: ""
+    },
     genres: [],
-    errors: {},
+    errors: {}
   };
 
   schema = {
     _id: Joi.string(),
-    title: Joi.string().required().label("Title"),
-    genreId: Joi.string().required().label("Genre"),
+    title: Joi.string()
+      .required()
+      .label("Title"),
+    genreId: Joi.string()
+      .required()
+      .label("Genre"),
     numberInStock: Joi.number()
       .required()
       .min(0)
       .max(100)
       .label("Number in Stock"),
-    dailyRentalRate: Joi.number().required().min(0).max(10).label("Rate"),
+    dailyRentalRate: Joi.number()
+      .required()
+      .min(0)
+      .max(10)
+      .label("Daily Rental Rate")
   };
 
   async populateGenres() {
@@ -52,7 +65,7 @@ class MovieForm extends Form {
       title: movie.title,
       genreId: movie.genre._id,
       numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailyRentalRate,
+      dailyRentalRate: movie.dailyRentalRate
     };
   }
 
@@ -66,7 +79,7 @@ class MovieForm extends Form {
     return (
       <div>
         <h1>Movie Form</h1>
-        <form onSubmit={this.doSubmit}>
+        <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
           {this.renderInput("numberInStock", "Number in Stock", "number")}
